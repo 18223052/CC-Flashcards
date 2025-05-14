@@ -4,98 +4,56 @@
   <meta charset="utf-8"/>
   <title>Flashcard Viewer</title>
   <style>
-    body {
-      background: #B7CEEC;
-      font-family: sans-serif;
-      text-align: center;
-      margin: 0;
-      padding: 0;
+    body {background: #B7CEEC; font-family: sans-serif; text-align: center; margin: 0; padding: 0;
     }
-    header {
-      padding: 2em 1em 1em;
+    #card {display: inline-block; margin-top: 2em; padding: 2em; background: white; border-radius: 0.75em; cursor: pointer; font-size: 1.5em; max-width: 600px; width: 80%; min-height: 120px; box-shadow: 0 0 10px rgba(0,0,0,0.2); position: relative;
     }
-    h1, h2, h3, p {
-      margin: 0.3em 0;
+    #label {position: absolute; top: 0.5em; left: 0.75em; font-size: 0.75em; background: #2B4865; color: white; padding: 0.2em 0.5em; border-radius: 0.3em;
     }
-    img {
-      margin: 1em 0;
-      height: 250px;
-      border-radius: 8px;
+    button {margin-top: 1.5em; padding: 0.75em 1.5em; font-size: 1em; background-color: #2B4865; color: white; border: none; border-radius: 0.5em; cursor: pointer;
     }
-    hr {
-      border: none;
-      height: 8px;
-      background-color: #668099;
-      margin: 1.5em auto;
-      width: 80%;
+    hr {border: none; height: 8px; background-color: #668099; margin: 1.5em auto; width: 80%;
     }
-    #card {
-      display: inline-block;
-      margin-top: 2em;
-      padding: 2em;
-      background: white;
-      border-radius: 0.75em;
-      cursor: pointer;
-      font-size: 1.5em;
-      max-width: 600px;
-      width: 80%;
-      min-height: 120px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    footer {margin-top: 1em; font-size: 0.9em;
     }
-    button {
-      margin-top: 1.5em;
-      padding: 0.75em 1.5em;
-      font-size: 1em;
-      background-color: #2B4865;
-      color: white;
-      border: none;
-      border-radius: 0.5em;
-      cursor: pointer;
-    }
-    button:disabled {
-      background-color: #cccccc;
-      cursor: not-allowed;
+    img {width: 100px; margin-top: 1em;
     }
   </style>
   <script>
     let showAnswer = false;
     function toggle() {
-      const elem = document.getElementById("card");
+      const card = document.getElementById("card");
+      const label = document.getElementById("label");
       const q = "{{ flashcard.question }}";
       const a = "{{ flashcard.answer }}";
       showAnswer = !showAnswer;
-      elem.innerText = showAnswer ? a : q;
+      card.innerText = showAnswer ? a : q;
+      card.prepend(label);
+      label.innerText = showAnswer ? "A" : "Q";
     }
   </script>
 </head>
 <body>
+  <h1>Flashcard {{ index + 1 }} / {{ total }}</h1>
+  <div id="card" onclick="toggle()">
+    <div id="label">Q</div>
+    {{ flashcard.question }}
+  </div>
+  <form method="get" action="/">
+    <input type="hidden" name="index" value="{{ index + 1 }}">
+    <button type="submit" {% if index + 1 >= total %}disabled{% endif %}>
+      {% if index + 1 < total %}Next →{% else %}End of Deck{% endif %}
+    </button>
+  </form>
 
-  <header>
-    <h1>Halo! Selamat datang di website saya.</h1>
-    <hr>
-    <h2>Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Fathimah Nurhumaida Ramadhani</h2>
-    <h2>NIM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 18223052</h2>
+  <hr>
+
+  <footer>
+    <p>Mata Kuliah: II2210 Teknologi Platform</p>
+    <p>Nama: Fathimah Nurhumaida Ramadhani</p>
+    <p>NIM: 18223052</p>
     <img src="/static/kucinghehe.jpg" alt="kucinghehe" title="kucinghehe">
-    <hr>
-    <h3 style="color: #2B4865;">Tugas Kecil 2</h3> 
-    <h3 style="color: #2B4865;">Pembuatan Docker Container</h3> 
-    <h3 style="color: #2B4865;">Mata Kuliah: II2210 Teknologi Platform</h3>
-    <hr>
     <p>Deployed on an Azure VM running Ubuntu 24.04 LTS</p>
-  </header>
-
-  <main>
-    <h1>Flashcard {{ index + 1 }} / {{ total }}</h1>
-    <div id="card" onclick="toggle()">{{ flashcard.question }}</div>
-    <form method="get" action="/">
-      <input type="hidden" name="index" value="{{ index + 1 }}">
-      {% if index + 1 < total %}
-        <button type="submit">Next →</button>
-      {% else %}
-        <button type="submit" disabled>End of Deck</button>
-      {% endif %}
-    </form>
-  </main>
-
+  </footer>
 </body>
 </html>
