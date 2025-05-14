@@ -29,7 +29,7 @@ async def read_flashcard(request: Request, index: int = 0):
             index = len(flashcards) - 1
 
         flashcard = flashcards[index]
-        return templates.TemplateResponse("flashcard.html", {
+        return templates.TemplateResponse("index.html", {
             "request": request,
             "flashcard": flashcard,
             "index": index,
