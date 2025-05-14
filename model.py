@@ -1,10 +1,6 @@
-from sqlmodel import Field, SQLModel
-from datetime import datetime
+from sqlmodel import SQLModel, Field
 
-class MOTDBase(SQLModel):
-    motd: str
-
-class MOTD(MOTDBase, table=True):
+class Flashcard(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
-    creator: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
+    question: str
+    answer: str

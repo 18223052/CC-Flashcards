@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
-<body style="background-color:#B7CEEC;">
 <head>
-    <title>Fathy</title>
+    <title>Flashcard Viewer</title>
+    <script>
+        let showAnswer = false;
+        function toggle() {
+            const content = document.getElementById("content");
+            const question = "{{ flashcard.question }}";
+            const answer = "{{ flashcard.answer }}";
+            showAnswer = !showAnswer;
+            content.innerText = showAnswer ? answer : question;
+        }
+    </script>
 </head>
-    <h1>Halo! Selamat datang di website saya.</h1>
-    <hr color="#668099" size="10">
-        <h2>Nama&emsp;: Fathimah Nurhumaida Ramadhani</h2>
-    <h2>NIM&emsp;&ensp;: 18223052</h2>
-    <img src="/static/kucinghehe.jpg" height="300" title="kucinghehe">
-    <img src="/static/anothertucil.jpg" height="300" title="anothertucil">
-    <hr>
-    <style>
-        h3 {color: #2B4865;}
-    </style>
-    <h3>Tugas Kecil 2</h3> 
-    <h3>Pembuatan Docker Container</h3> 
-    <h3>Mata Kuliah&emsp;: II2210 Teknologi Platform</h3>
-    <hr>
-    <p>Deployed on an Azure VM running Ubuntu 24.04 LTS</p>
+<body>
+    {% if error %}
+        <h2>{{ error }}</h2>
+    {% else %}
+        <h1>Flashcard {{ index + 1 }} / {{ total }}</h1>
+        <div onclick="toggle()" id="content" style="cursor:pointer; border:1px solid #ccc; padding:20px; width:300px;">
+            {{ flashcard.question }}
+        </div>
+        <br>
+        {% if index + 1 < total %}
+            <a href="/?index={{ index + 1 }}">Next</a>
+        {% else %}
+            <p>End of flashcards.</p>
+        {% endif %}
+    {% endif %}
 </body>
 </html>
