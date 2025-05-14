@@ -20,13 +20,13 @@ async def read_flashcard(request: Request, index: int = 0):
     with Session(engine) as session:
         flashcards = session.exec(select(Flashcard)).all()
         if not flashcards:
-            return templates.TemplateResponse("flashcard.html", {
+            return templates.TemplateResponse("index.html",  {
                 "request": request,
                 "error": "No flashcards available",
             })
 
         if index >= len(flashcards):
-            index = len(flashcards) - 1  # Stay at last card
+            index = len(flashcards) - 1
 
         flashcard = flashcards[index]
         return templates.TemplateResponse("flashcard.html", {
