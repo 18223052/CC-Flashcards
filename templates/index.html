@@ -105,10 +105,10 @@
     {{ flashcard.question }}
   </div>
   <form method="get" action="/">
-    <input type="hidden" name="index" value="{% if index + 1 >= total %}0{% else %}{{ index + 1 }}{% endif %}">
-    <button type="submit" {% if index + 1 >= total %}disabled{% endif %}>
-      {% if index + 1 < total %}Next →{% else %}End of Deck. Restart?{% endif %}
-    </button>
+     <input type="hidden" name="index" value="{% if index + 1 >= total %}0{% else %}{{ index + 1 }}{% endif %}">
+     <button type="end">
+        {% if index + 1 < total %}Next →{% else %}Back to Start{% endif %}
+     </button>
   </form>
 
   <footer>
