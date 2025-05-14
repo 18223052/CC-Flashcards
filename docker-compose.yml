@@ -1,10 +1,10 @@
-version: "3.9"
+#version: "3.9"
 
 services:
   web:
     build: .
     ports:
-      - "17787:17787"
+      - "52052:52052"
     volumes:
       - .:/app
 
