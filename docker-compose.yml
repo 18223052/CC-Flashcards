@@ -7,4 +7,3 @@ services:
       - "52052:52052"
     volumes:
       - .:/app
-
