@@ -69,7 +69,7 @@
       font-family: "Times New Roman", serif;
       font-size: 0.9em;
       position: absolute;
-      bottom: 50px;
+      bottom: 20px;
       width: 100%;
       background: #B7CEEC;
       padding: 0.5em 0;
@@ -80,7 +80,7 @@
     }
 
     footer img {
-      width: 50px;
+      width: 60px;
       margin-top: 0.5em;
     }
   </style>
@@ -105,9 +105,9 @@
     {{ flashcard.question }}
   </div>
   <form method="get" action="/">
-    <input type="hidden" name="index" value="{{ index + 1 }}">
+    <input type="hidden" name="index" value="{% if index + 1 >= total %}0{% else %}{{ index + 1 }}{% endif %}">
     <button type="submit" {% if index + 1 >= total %}disabled{% endif %}>
-      {% if index + 1 < total %}Next →{% else %}End of Deck{% endif %}
+      {% if index + 1 < total %}Next →{% else %}End of Deck. Restart?{% endif %}
     </button>
   </form>
 
