@@ -4,9 +4,58 @@
   <meta charset="utf-8"/>
   <title>Flashcard Viewer</title>
   <style>
-    body { background: #B7CEEC; font-family: sans-serif; text-align: center; }
-    #card { display: inline-block; margin-top: 2em; padding: 1.5em; background: white; border-radius: .5em; cursor: pointer; }
-    button { margin-top: 1em; padding: .5em 1em; }
+    body {
+      background: #B7CEEC;
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 2em 1em 1em;
+    }
+    h1, h2, h3, p {
+      margin: 0.3em 0;
+    }
+    img {
+      margin: 1em 0;
+      height: 250px;
+      border-radius: 8px;
+    }
+    hr {
+      border: none;
+      height: 8px;
+      background-color: #668099;
+      margin: 1.5em auto;
+      width: 80%;
+    }
+    #card {
+      display: inline-block;
+      margin-top: 2em;
+      padding: 2em;
+      background: white;
+      border-radius: 0.75em;
+      cursor: pointer;
+      font-size: 1.5em;
+      max-width: 600px;
+      width: 80%;
+      min-height: 120px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    button {
+      margin-top: 1.5em;
+      padding: 0.75em 1.5em;
+      font-size: 1em;
+      background-color: #2B4865;
+      color: white;
+      border: none;
+      border-radius: 0.5em;
+      cursor: pointer;
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
   </style>
   <script>
     let showAnswer = false;
@@ -20,15 +69,33 @@
   </script>
 </head>
 <body>
-  <h1>Flashcard {{ index + 1 }} / {{ total }}</h1>
-  <div id="card" onclick="toggle()">{{ flashcard.question }}</div>
-  <form method="get" action="/">
-    <input type="hidden" name="index" value="{{ index + 1 }}">
-    {% if index + 1 < total %}
-      <button type="submit">Next →</button>
-    {% else %}
-      <button type="submit" disabled>End of Deck</button>
-    {% endif %}
-  </form>
+
+  <header>
+    <h1>Halo! Selamat datang di website saya.</h1>
+    <hr>
+    <h2>Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Fathimah Nurhumaida Ramadhani</h2>
+    <h2>NIM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: 18223052</h2>
+    <img src="/static/kucinghehe.jpg" alt="kucinghehe" title="kucinghehe">
+    <hr>
+    <h3 style="color: #2B4865;">Tugas Kecil 2</h3> 
+    <h3 style="color: #2B4865;">Pembuatan Docker Container</h3> 
+    <h3 style="color: #2B4865;">Mata Kuliah: II2210 Teknologi Platform</h3>
+    <hr>
+    <p>Deployed on an Azure VM running Ubuntu 24.04 LTS</p>
+  </header>
+
+  <main>
+    <h1>Flashcard {{ index + 1 }} / {{ total }}</h1>
+    <div id="card" onclick="toggle()">{{ flashcard.question }}</div>
+    <form method="get" action="/">
+      <input type="hidden" name="index" value="{{ index + 1 }}">
+      {% if index + 1 < total %}
+        <button type="submit">Next →</button>
+      {% else %}
+        <button type="submit" disabled>End of Deck</button>
+      {% endif %}
+    </form>
+  </main>
+
 </body>
 </html>
