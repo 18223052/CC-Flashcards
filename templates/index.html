@@ -4,19 +4,84 @@
   <meta charset="utf-8"/>
   <title>Flashcard Viewer</title>
   <style>
-    body {background: #B7CEEC; font-family: sans-serif; text-align: center; margin: 0; padding: 0;
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
     }
-    #card {display: inline-block; margin-top: 2em; padding: 2em; background: white; border-radius: 0.75em; cursor: pointer; font-size: 1.5em; max-width: 600px; width: 80%; min-height: 120px; box-shadow: 0 0 10px rgba(0,0,0,0.2); position: relative;
+
+    body {
+      background: #B7CEEC;
+      font-family: sans-serif;
+      text-align: center;
+      position: relative;
+      min-height: 100vh;
+      padding-bottom: 120px; /* spacing for footer */
+      box-sizing: border-box;
     }
-    #label {position: absolute; top: 0.5em; left: 0.75em; font-size: 0.75em; background: #2B4865; color: white; padding: 0.2em 0.5em; border-radius: 0.3em;
+
+    #card {
+      display: inline-block;
+      margin-top: 2em;
+      padding: 2em;
+      background: white;
+      border-radius: 0.75em;
+      cursor: pointer;
+      font-size: 1.5em;
+      max-width: 600px;
+      width: 80%;
+      min-height: 120px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      position: relative;
     }
-    button {margin-top: 1.5em; padding: 0.75em 1.5em; font-size: 1em; background-color: #2B4865; color: white; border: none; border-radius: 0.5em; cursor: pointer;
+
+    #label {
+      position: absolute;
+      top: 0.5em;
+      left: 0.75em;
+      font-size: 0.75em;
+      background: #2B4865;
+      color: white;
+      padding: 0.2em 0.5em;
+      border-radius: 0.3em;
     }
-    hr {border: none; height: 8px; background-color: #668099; margin: 1.5em auto; width: 80%;
+
+    button {
+      margin-top: 1.5em;
+      padding: 0.75em 1.5em;
+      font-size: 1em;
+      background-color: #2B4865;
+      color: white;
+      border: none;
+      border-radius: 0.5em;
+      cursor: pointer;
     }
-    footer {margin-top: 1em; font-size: 0.9em;
+
+    hr {
+      border: none;
+      height: 8px;
+      background-color: #668099;
+      margin: 2em 0 0 0;
+      width: 100%;
     }
-    img {width: 100px; margin-top: 1em;
+
+    footer {
+      font-family: "Times New Roman", serif;
+      font-size: 0.9em;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: #B7CEEC;
+      padding: 0.5em 0;
+    }
+
+    footer p {
+      margin: 0.25em 0;
+    }
+
+    footer img {
+      width: 100px;
+      margin-top: 0.5em;
     }
   </style>
   <script>
